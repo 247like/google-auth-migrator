@@ -28,7 +28,7 @@
 ## 🖼️ 界面预览
 
 *(建议在此处放一张工具运行时的截图，文件命名为 screenshot.png 并放在仓库根目录)*
-`![界面预览](screenshot.png)`
+![界面预览](./screenshot.png)
 
 ## 📖 使用指南
 
@@ -57,6 +57,11 @@
     * [`zxing-js/library`](https://github.com/zxing-js/library) (主引擎)
     * [`cozmo/jsQR`](https://github.com/cozmo/jsQR) (兜底引擎)
 * **协议解析**: 手写 Protobuf 解码器 (无需庞大的 proto 库依赖)
+
+## 🌐 在线使用
+
+如果不介意，可直接用我部署的版本（纯静态托管）：
+👉 **[https://g-auth.beiai.de](https://g-auth.beiai.de)**
 
 ## 📦 本地部署 (推荐)
 
