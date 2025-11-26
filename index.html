@@ -6,7 +6,12 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 		/>
-		<title>GAuth 迁移助手 Pro (全能版)</title>
+		<title>GAuth Migrator Pro</title>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%234f46e5'/%3E%3Cstop offset='100%25' style='stop-color:%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23grad)'/%3E%3Csvg x='6' y='6' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E%3C/svg%3E"
+		/>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
@@ -1116,6 +1121,10 @@
 					// Modals - Progress
 					progressTitle: "正在处理",
 					progressInit: "初始化...",
+					progressStatus: "处理 {current}/{total}: {msg}",
+					progressRetry: "{name}（重试 {current}/{total}）",
+					progressCompress: "正在压缩...",
+					progressGenerateQR: "生成二维码 {name}",
 
 					// Modals - Manual
 					manualTitle: "手动解析",
@@ -1129,6 +1138,7 @@
 					qrType: "类型",
 					qrAlgo: "算法",
 					qrUnknown: "未知",
+					digitsUnit: "位",
 
 					// Modals - Confirm
 					confirmTitle: "确认操作",
@@ -1164,6 +1174,9 @@
 					errorMissingData: "链接格式错误：缺少数据部分",
 					errorBase64: "数据格式错误：无法解码",
 					errorProtobuf: "数据损坏：",
+					errorDecodeFailed: "所有解码策略均失败",
+					errorNoParsedAccounts: "未解析到任何账户",
+					errorEmptyData: "解码后数据为空",
 					errorQRGeneration: "二维码生成失败",
 					errorExportFailed: "导出失败",
 
@@ -1216,6 +1229,10 @@
 					// Modals - Progress
 					progressTitle: "Processing",
 					progressInit: "Initializing...",
+					progressStatus: "Processing {current}/{total}: {msg}",
+					progressRetry: "{name} (retry {current}/{total})",
+					progressCompress: "Compressing...",
+					progressGenerateQR: "Generating QR for {name}",
 
 					// Modals - Manual
 					manualTitle: "Manual Parse",
@@ -1229,6 +1246,7 @@
 					qrType: "Type",
 					qrAlgo: "Algorithm",
 					qrUnknown: "Unknown",
+					digitsUnit: "digits",
 
 					// Modals - Confirm
 					confirmTitle: "Confirm Action",
@@ -1267,6 +1285,9 @@
 					errorMissingData: "Link format error: missing data field",
 					errorBase64: "Data format error: cannot decode",
 					errorProtobuf: "Data corrupted: ",
+					errorDecodeFailed: "All decoding strategies failed",
+					errorNoParsedAccounts: "No accounts parsed",
+					errorEmptyData: "Decoded data is empty",
 					errorQRGeneration: "QR code generation failed",
 					errorExportFailed: "Export failed",
 
@@ -1411,7 +1432,12 @@
 				document.querySelector("#progressModal h3").textContent =
 					t("progressTitle");
 				const progressText = document.getElementById("progressText");
-				if (progressText && progressText.textContent === "初始化...") {
+				if (
+					progressText &&
+					[i18n.zh.progressInit, i18n.en.progressInit].includes(
+						progressText.textContent
+					)
+				) {
 					progressText.textContent = t("progressInit");
 				}
 
@@ -1433,22 +1459,29 @@
 				const confirmTitle = document.getElementById("confirmTitle");
 				const confirmMessage =
 					document.getElementById("confirmMessage");
-				if (confirmTitle && confirmTitle.textContent === "确认操作") {
+				if (
+					confirmTitle &&
+					[i18n.zh.confirmTitle, i18n.en.confirmTitle].includes(
+						confirmTitle.textContent
+					)
+				) {
 					confirmTitle.textContent = t("confirmTitle");
 				}
 				if (
 					confirmMessage &&
-					confirmMessage.textContent === "此操作无法撤销"
+					[i18n.zh.confirmMessage, i18n.en.confirmMessage].includes(
+						confirmMessage.textContent
+					)
 				) {
 					confirmMessage.textContent = t("confirmMessage");
 				}
 				const confirmBtns = document.querySelectorAll(
 					"#confirmModal button"
 				);
-				if (confirmBtns[0] && confirmBtns[0].textContent === "取消") {
+				if (confirmBtns[0]) {
 					confirmBtns[0].textContent = t("confirmCancel");
 				}
-				if (confirmBtns[1] && confirmBtns[1].textContent === "确认") {
+				if (confirmBtns[1]) {
 					confirmBtns[1].textContent = t("confirmOK");
 				}
 
@@ -1618,7 +1651,11 @@
 						try {
 							const progressMsg =
 								retryCount > 0
-									? `${file.name} (重试 ${retryCount}/${MAX_RETRIES})`
+									? t("progressRetry", {
+											name: file.name,
+											current: retryCount,
+											total: MAX_RETRIES,
+									  })
 									: file.name;
 							updateProgress(i + 1, total, progressMsg);
 
@@ -1633,7 +1670,7 @@
 									`✓ ${file.name}: 成功解析 ${newAcc.length} 个账户`
 								);
 							} else {
-								throw new Error("未解析到任何账户");
+								throw new Error(t("errorNoParsedAccounts"));
 							}
 						} catch (e) {
 							lastError = e;
@@ -1641,7 +1678,14 @@
 
 							if (retryCount <= MAX_RETRIES) {
 								console.log(
-									`✗ ${file.name}: ${e.message}，准备重试...`
+									`✗ ${file.name}: ${e.message} - ${t(
+										"progressRetry",
+										{
+											name: file.name,
+											current: retryCount,
+											total: MAX_RETRIES,
+										}
+									)}`
 								);
 								await new Promise((r) => setTimeout(r, 300));
 							}
@@ -1650,18 +1694,31 @@
 
 					// 记录失败的文件
 					if (!succeeded) {
+						const failType =
+							lastError?.message.includes("解码") ||
+							lastError?.message
+								.toLowerCase?.()
+								.includes("decode")
+								? currentLang === "zh"
+									? "二维码识别"
+									: "QR decoding"
+								: lastError?.message.includes("Protobuf")
+								? currentLang === "zh"
+									? "数据解析"
+									: "Data parse"
+								: currentLang === "zh"
+								? "其他"
+								: "Other";
 						failedFiles.push({
 							name: file.name,
-							error: lastError?.message || "未知错误",
-							type: lastError?.message.includes("解码")
-								? "二维码识别"
-								: lastError?.message.includes("Protobuf")
-								? "数据解析"
-								: "其他",
+							error:
+								lastError?.message ||
+								(currentLang === "zh"
+									? "未知错误"
+									: "Unknown error"),
+							type: failType,
 						});
-						console.error(
-							`✗ ${file.name}: 最终失败 - ${lastError?.message}`
-						);
+						console.error(`✗ ${file.name}: ${lastError?.message}`);
 					}
 
 					await new Promise((r) => setTimeout(r, 50));
@@ -1683,7 +1740,11 @@
 								t("toastPartialSuccess", { success, fail }),
 								"error"
 							);
-							console.group("❌ 失败文件详情");
+							console.group(
+								currentLang === "zh"
+									? "❌ 失败文件详情"
+									: "❌ Failed files detail"
+							);
 							failedFiles.forEach((f) => {
 								console.error(
 									`📄 ${f.name}\n   类型: ${f.type}\n   原因: ${f.error}`
@@ -1693,7 +1754,11 @@
 						}
 					} else {
 						showToast(t("toastAllFailed"), "error");
-						console.group("❌ 所有文件均失败");
+						console.group(
+							currentLang === "zh"
+								? "❌ 所有文件均失败"
+								: "❌ All files failed"
+						);
 						failedFiles.forEach((f) => {
 							console.error(`📄 ${f.name}: ${f.error}`);
 						});
@@ -1822,7 +1887,7 @@
 					}
 				}
 
-				throw new Error("所有解码策略均失败");
+				throw new Error(t("errorDecodeFailed"));
 			}
 
 			function resizeImage(img, maxSize) {
@@ -2021,11 +2086,11 @@
 			// === Core: Protobuf ===
 			function parseProtobuf(urlStr) {
 				if (!urlStr || typeof urlStr !== "string") {
-					throw new Error("无效的输入");
+					throw new Error(t("errorInvalidLink"));
 				}
 
 				if (!urlStr.includes("otpauth-migration")) {
-					throw new Error("不是有效的 Google Authenticator 迁移链接");
+					throw new Error(t("errorInvalidLink"));
 				}
 
 				let b64 = "";
@@ -2039,7 +2104,7 @@
 				}
 
 				if (!b64) {
-					throw new Error("链接中缺少数据字段");
+					throw new Error(t("errorMissingData"));
 				}
 
 				// 解码 URL 编码并转换 Base64URL 到标准 Base64
@@ -2068,12 +2133,12 @@
 							bytes[i] = bin.charCodeAt(i);
 						}
 					} catch (e2) {
-						throw new Error("Base64 解码失败");
+						throw new Error(t("errorBase64"));
 					}
 				}
 
 				if (bytes.length === 0) {
-					throw new Error("解码后数据为空");
+					throw new Error(t("errorEmptyData"));
 				}
 
 				const list = [];
@@ -2223,7 +2288,7 @@
 							if (item.secret && item.secret.length > 0) {
 								// 设置默认值
 								if (!item.name || item.name.trim() === "") {
-									item.name = item.issuer || "未命名账户";
+									item.name = item.issuer || t("cardUnnamed");
 								}
 								list.push(item);
 							} else {
@@ -2262,7 +2327,7 @@
 				}
 
 				if (list.length === 0) {
-					throw new Error("未找到有效的 OTP 账户");
+					throw new Error(t("errorNoParsedAccounts"));
 				}
 
 				return list;
@@ -2319,9 +2384,9 @@
 						)}</div>
                         <div class="tags"><span class="tag totp">${acc.type.toUpperCase()}</span><span class="tag">${
 						acc.algo
-					}</span><span class="tag">${acc.digits}${
-						currentLang === "zh" ? "位" : " digits"
-					}</span></div>
+					}</span><span class="tag">${acc.digits} ${t(
+						"digitsUnit"
+					)}</span></div>
                     </div>
                 </div>
                 <div class="card-actions">
@@ -2508,7 +2573,7 @@
 
 					// 设置标题和信息
 					document.getElementById("qrModalTitle").textContent =
-						acc.name || "二维码";
+						acc.name || t("qrTitle");
 					document.getElementById("qrInfo").innerHTML = `
 						<div class="qr-info-row">
 							<span class="qr-info-label">${t("qrAccount")}</span>
@@ -2516,7 +2581,7 @@
 						</div>
 						<div class="qr-info-row">
 							<span class="qr-info-label">${t("qrIssuer")}</span>
-							<span class="qr-info-value">${esc(acc.issuer || "未知")}</span>
+							<span class="qr-info-value">${esc(acc.issuer || t("qrUnknown"))}</span>
 						</div>
 						<div class="qr-info-row">
 							<span class="qr-info-label">${t("qrType")}</span>
@@ -2524,7 +2589,9 @@
 						</div>
 						<div class="qr-info-row">
 							<span class="qr-info-label">${t("qrAlgo")}</span>
-							<span class="qr-info-value">${acc.algo} / ${acc.digits}位</span>
+							<span class="qr-info-value">${acc.algo} / ${acc.digits} ${t(
+						"digitsUnit"
+					)}</span>
 						</div>
 					`;
 
@@ -2550,7 +2617,11 @@
 
 					for (let i = 0; i < total; i++) {
 						const acc = state.accounts[i];
-						updateProgress(i + 1, total, `生成二维码: ${acc.name}`);
+						updateProgress(
+							i + 1,
+							total,
+							t("progressGenerateQR", { name: acc.name })
+						);
 
 						const uri = generateUri(acc);
 
@@ -2606,7 +2677,7 @@
 						await new Promise((r) => setTimeout(r, 50));
 					}
 
-					updateProgress(total, total, "正在压缩...");
+					updateProgress(total, total, t("progressCompress"));
 					const zipBlob = await zip.generateAsync({ type: "blob" });
 
 					const date = new Date().toISOString().slice(0, 10);
@@ -2658,29 +2729,21 @@
 					}
 				} catch (e) {
 					console.error("手动解析失败:", e);
-					let errorMsg = "解析失败";
-
-					if (e.message.includes("迁移链接")) {
-						errorMsg = "请输入有效的 Google Authenticator 迁移链接";
-					} else if (e.message.includes("数据字段")) {
-						errorMsg = "链接格式错误：缺少数据部分";
-					} else if (e.message.includes("Base64")) {
-						errorMsg = "数据格式错误：无法解码";
-					} else if (e.message.includes("Protobuf")) {
-						errorMsg = "数据损坏：" + e.message;
-					} else {
-						errorMsg = e.message;
-					}
-
+					const errorMsg = e.message || t("errorProtobuf");
 					showToast(errorMsg, "error");
 				}
 			};
-			function updateProgress(i, t, msg) {
+			function updateProgress(current, total, msg) {
 				document.getElementById("progressFill").style.width =
-					Math.round((i / t) * 100) + "%";
-				document.getElementById(
-					"progressText"
-				).textContent = `处理中 ${i}/${t}: ${msg}`;
+					Math.round((current / total) * 100) + "%";
+				document.getElementById("progressText").textContent = t(
+					"progressStatus",
+					{
+						current,
+						total,
+						msg,
+					}
+				);
 			}
 			function showToast(msg, type) {
 				const t = document.createElement("div");
