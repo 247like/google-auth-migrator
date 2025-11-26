@@ -63,12 +63,43 @@
 				justify-content: space-between;
 				align-items: center;
 			}
+			.nav-actions {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+			}
 			.brand {
 				display: flex;
 				align-items: center;
 				gap: 0.75rem;
 				font-weight: 700;
 				font-size: 1.1rem;
+			}
+			.lang-switcher {
+				display: flex;
+				gap: 0.25rem;
+				background: var(--bg-surface);
+				border: 1px solid var(--border);
+				border-radius: 8px;
+				padding: 4px;
+			}
+			.lang-btn {
+				padding: 4px 12px;
+				border: none;
+				background: none;
+				border-radius: 6px;
+				cursor: pointer;
+				font-size: 0.875rem;
+				font-weight: 600;
+				color: var(--text-sub);
+				transition: 0.2s;
+			}
+			.lang-btn:hover {
+				background: var(--bg-body);
+			}
+			.lang-btn.active {
+				background: var(--primary);
+				color: white;
 			}
 			.brand-icon {
 				width: 32px;
@@ -238,19 +269,31 @@
 			}
 
 			.delete-btn {
-				position: absolute;
-				top: 1rem;
-				right: 1rem;
-				background: none;
-				border: none;
-				color: #94a3b8;
+				background: #fef2f2;
+				border: 1px solid #fecaca;
+				color: #dc2626;
 				cursor: pointer;
-				padding: 4px;
-				border-radius: 4px;
+				padding: 6px 12px;
+				border-radius: 8px;
+				font-size: 0.875rem;
+				font-weight: 600;
+				transition: 0.2s;
 			}
 			.delete-btn:hover {
-				background: #fef2f2;
-				color: var(--error);
+				background: #fee2e2;
+				border-color: #fca5a5;
+				color: #b91c1c;
+			}
+
+			.btn-danger {
+				background: #fee2e2;
+				border: 1px solid #fca5a5;
+				color: #dc2626;
+			}
+			.btn-danger:hover {
+				background: #fecaca;
+				border-color: #f87171;
+				color: #b91c1c;
 			}
 
 			/* Stats Bar */
@@ -394,6 +437,139 @@
 				}
 			}
 
+			/* Card Actions */
+			.card-actions {
+				display: flex;
+				gap: 0.5rem;
+				padding-top: 0.75rem;
+				border-top: 1px solid var(--border);
+			}
+			.btn-sm {
+				padding: 0.5rem 1rem;
+				font-size: 0.8rem;
+			}
+			.btn-icon {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+
+			/* QR Code Modal */
+			.qr-modal-content {
+				text-align: center;
+			}
+			.qr-canvas {
+				margin: 1.5rem auto;
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				padding: 1rem;
+				background: white;
+				max-width: 100%;
+			}
+			.qr-info {
+				background: #f8fafc;
+				padding: 1rem;
+				border-radius: 10px;
+				margin-top: 1rem;
+				text-align: left;
+			}
+			.qr-info-row {
+				display: flex;
+				justify-content: space-between;
+				padding: 0.5rem 0;
+				border-bottom: 1px solid var(--border);
+				gap: 1rem;
+				align-items: center;
+			}
+			.qr-info-row:last-child {
+				border-bottom: none;
+			}
+			.qr-info-label {
+				font-weight: 600;
+				color: var(--text-sub);
+				font-size: 0.85rem;
+				flex-shrink: 0;
+			}
+			.qr-info-value {
+				color: var(--text-main);
+				font-weight: 600;
+				font-size: 0.85rem;
+				text-align: right;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				min-width: 0;
+			}
+
+			/* Confirm Modal */
+			.confirm-modal {
+				max-width: 400px;
+			}
+			.confirm-icon {
+				width: 56px;
+				height: 56px;
+				background: #fef2f2;
+				color: var(--error);
+				border-radius: 50%;
+				display: grid;
+				place-items: center;
+				margin: 0 auto 1rem auto;
+			}
+			.confirm-actions {
+				display: flex;
+				gap: 0.75rem;
+				margin-top: 1.5rem;
+			}
+			.confirm-actions button {
+				flex: 1;
+			}
+
+			/* Info Banner */
+			.info-banner {
+				background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+				border: 1px solid #bae6fd;
+				border-bottom: 2px solid #7dd3fc;
+				padding: 1rem 1.25rem;
+				display: flex;
+				align-items: flex-start;
+				gap: 0.75rem;
+				box-shadow: 0 2px 4px 0 rgba(59, 130, 246, 0.08);
+				position: sticky;
+				top: 64px;
+				z-index: 40;
+				backdrop-filter: blur(8px);
+				background: linear-gradient(
+					135deg,
+					rgba(240, 249, 255, 0.95) 0%,
+					rgba(224, 242, 254, 0.95) 100%
+				);
+			}
+			.info-banner-icon {
+				width: 20px;
+				height: 20px;
+				color: #0284c7;
+				flex-shrink: 0;
+				margin-top: 2px;
+			}
+			.info-banner-content {
+				flex: 1;
+			}
+			.info-banner-title {
+				font-weight: 600;
+				color: #0c4a6e;
+				font-size: 0.9rem;
+				margin-bottom: 0.25rem;
+			}
+			.info-banner-text {
+				color: #075985;
+				font-size: 0.85rem;
+				line-height: 1.5;
+			}
+			.info-banner-highlight {
+				color: #0369a1;
+				font-weight: 600;
+			}
+
 			@media (max-width: 640px) {
 				.stats-bar {
 					flex-direction: column;
@@ -421,26 +597,44 @@
 							/>
 						</svg>
 					</div>
-					GAuth 迁移助手 Pro
+					<span id="navTitle">GAuth 迁移助手 Pro</span>
 				</div>
-				<button
-					class="btn btn-primary"
-					id="exportMenuBtn"
-					disabled
-					onclick="openModal('exportModal')"
-				>
-					<span>导出数据</span>
-					<svg
-						width="16"
-						height="16"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
+				<div class="nav-actions">
+					<div class="lang-switcher">
+						<button
+							class="lang-btn active"
+							data-lang="zh"
+							onclick="setLanguage('zh')"
+						>
+							中文
+						</button>
+						<button
+							class="lang-btn"
+							data-lang="en"
+							onclick="setLanguage('en')"
+						>
+							EN
+						</button>
+					</div>
+					<button
+						class="btn btn-primary"
+						id="exportMenuBtn"
+						disabled
+						onclick="openModal('exportModal')"
 					>
-						<path d="M6 9l6 6 6-6" />
-					</svg>
-				</button>
+						<span id="exportBtnText">导出数据</span>
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<path d="M6 9l6 6 6-6" />
+						</svg>
+					</button>
+				</div>
 			</div>
 		</nav>
 
@@ -526,6 +720,29 @@
 				</div>
 			</div>
 
+			<div class="info-banner hidden" id="infoBanner">
+				<svg
+					class="info-banner-icon"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+				>
+					<circle cx="12" cy="12" r="10" />
+					<line x1="12" y1="16" x2="12" y2="12" />
+					<line x1="12" y1="8" x2="12.01" y2="8" />
+				</svg>
+				<div class="info-banner-content">
+					<div class="info-banner-title">🔒 数据安全提示</div>
+					<div class="info-banner-text">
+						您的账户数据已安全保存在本地浏览器中（15分钟后自动清除）。<span
+							class="info-banner-highlight"
+							>完成迁移后，请及时点击"清空"按钮删除所有敏感数据</span
+						>，确保账户安全。
+					</div>
+				</div>
+			</div>
+
 			<div class="stats-bar hidden" id="statsBar">
 				<div style="font-weight: 600">
 					已解析
@@ -546,10 +763,7 @@
 							outline: none;
 						"
 					/>
-					<button
-						class="btn btn-secondary"
-						onclick="confirmClearAll()"
-					>
+					<button class="btn btn-danger" onclick="confirmClearAll()">
 						清空
 					</button>
 				</div>
@@ -583,6 +797,7 @@
 							font-size: 1.5rem;
 							color: var(--text-sub);
 							cursor: pointer;
+							line-height: 1;
 						"
 					>
 						&times;
@@ -658,6 +873,28 @@
 						<p>适用于 Aegis, 2FAS 或生成新二维码 (万能格式)</p>
 					</div>
 				</button>
+
+				<button class="export-option" onclick="exportQRCodes()">
+					<div class="export-icon">
+						<svg
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<rect x="3" y="3" width="7" height="7" />
+							<rect x="14" y="3" width="7" height="7" />
+							<rect x="3" y="14" width="7" height="7" />
+							<rect x="14" y="14" width="7" height="7" />
+						</svg>
+					</div>
+					<div class="export-info">
+						<h4>二维码打包 (.zip)</h4>
+						<p>为每个密钥生成二维码图片并打包下载</p>
+					</div>
+				</button>
 			</div>
 		</div>
 
@@ -687,19 +924,22 @@
 						display: flex;
 						justify-content: space-between;
 						margin-bottom: 1rem;
+						align-items: center;
 					"
 				>
-					<h3>手动解析</h3>
+					<h3 style="margin: 0">手动解析</h3>
 					<button
 						onclick="closeModal('manualModal')"
 						style="
 							background: none;
 							border: none;
-							font-size: 1.2rem;
+							font-size: 1.5rem;
+							color: var(--text-sub);
 							cursor: pointer;
+							line-height: 1;
 						"
 					>
-						✕
+						&times;
 					</button>
 				</div>
 				<textarea
@@ -726,14 +966,600 @@
 			</div>
 		</div>
 
+		<!-- QR Code Modal -->
+		<div class="modal-overlay" id="qrModal">
+			<div class="modal">
+				<div
+					style="
+						display: flex;
+						justify-content: space-between;
+						margin-bottom: 1rem;
+						align-items: center;
+						gap: 1rem;
+					"
+				>
+					<h3
+						id="qrModalTitle"
+						style="
+							margin: 0;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							flex: 1;
+							min-width: 0;
+						"
+					>
+						二维码
+					</h3>
+					<button
+						onclick="closeModal('qrModal')"
+						style="
+							background: none;
+							border: none;
+							font-size: 1.5rem;
+							color: var(--text-sub);
+							cursor: pointer;
+							line-height: 1;
+							flex-shrink: 0;
+						"
+					>
+						&times;
+					</button>
+				</div>
+				<div class="qr-modal-content">
+					<canvas id="qrCanvas" class="qr-canvas"></canvas>
+					<div class="qr-info" id="qrInfo"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Confirm Modal -->
+		<div class="modal-overlay" id="confirmModal">
+			<div class="modal confirm-modal">
+				<div class="confirm-icon">
+					<svg
+						width="28"
+						height="28"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<circle cx="12" cy="12" r="10" />
+						<line x1="12" y1="8" x2="12" y2="12" />
+						<line x1="12" y1="16" x2="12.01" y2="16" />
+					</svg>
+				</div>
+				<h3
+					id="confirmTitle"
+					style="text-align: center; margin-bottom: 0.5rem"
+				>
+					确认操作
+				</h3>
+				<p
+					id="confirmMessage"
+					style="
+						text-align: center;
+						color: var(--text-sub);
+						font-size: 0.9rem;
+					"
+				>
+					此操作无法撤销
+				</p>
+				<div class="confirm-actions">
+					<button
+						class="btn btn-secondary"
+						onclick="closeModal('confirmModal')"
+					>
+						取消
+					</button>
+					<button
+						class="btn btn-danger"
+						id="confirmBtn"
+						onclick="handleConfirm()"
+					>
+						确认
+					</button>
+				</div>
+			</div>
+		</div>
+
 		<div class="toast-container" id="toastContainer"></div>
 
 		<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.20.0/umd/index.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 
 		<script>
+			// === i18n Configuration ===
+			const i18n = {
+				zh: {
+					// Navigation
+					appTitle: "GAuth 迁移助手 Pro",
+					exportBtn: "导出数据",
+
+					// Upload Section
+					uploadTitle: "Google Authenticator 纯本地化迁移",
+					uploadDesc:
+						'<span style="color: var(--success); font-weight: 600">全程浏览器离线处理</span>、双引擎解析、自动增强去噪、支持批量处理',
+					selectImages: "选择图片",
+					linkParse: "链接解析",
+
+					// Info Banner
+					infoBannerTitle: "🔒 数据安全提示",
+					infoBannerText:
+						'您的账户数据已安全保存在本地浏览器中（15分钟后自动清除）。<span class="info-banner-highlight">完成迁移后，请及时点击"清空"按钮删除所有敏感数据</span>，确保账户安全。',
+
+					// Stats Bar
+					parsed: "已解析",
+					accounts: "个账户",
+					search: "搜索...",
+					clear: "清空",
+
+					// Empty State
+					emptyState: "暂无数据",
+
+					// Modals - Export
+					exportModalTitle: "选择导出格式",
+					exportBitwarden: "Bitwarden (JSON)",
+					exportBitwardenDesc: "适用于 Bitwarden, Vaultwarden 导入",
+					exportCSV: "通用 CSV",
+					exportCSVDesc:
+						"适用于 1Password, KeePass, Enpass, LastPass",
+					exportTxt: "纯 URI 文本 (.txt)",
+					exportTxtDesc:
+						"适用于 Aegis, 2FAS 或生成新二维码 (万能格式)",
+					exportQR: "二维码打包 (.zip)",
+					exportQRDesc: "为每个密钥生成二维码图片并打包下载",
+
+					// Modals - Progress
+					progressTitle: "正在处理",
+					progressInit: "初始化...",
+
+					// Modals - Manual
+					manualTitle: "手动解析",
+					manualPlaceholder: "粘贴 otpauth-migration://...",
+					manualConfirm: "确认解析",
+
+					// Modals - QR
+					qrTitle: "二维码",
+					qrAccount: "账户名称",
+					qrIssuer: "发行者",
+					qrType: "类型",
+					qrAlgo: "算法",
+					qrUnknown: "未知",
+
+					// Modals - Confirm
+					confirmTitle: "确认操作",
+					confirmMessage: "此操作无法撤销",
+					confirmCancel: "取消",
+					confirmOK: "确认",
+
+					// Card
+					cardQR: "二维码",
+					cardDelete: "删除",
+					cardUnnamed: "未命名账户",
+
+					// Toast Messages
+					toastRecovered:
+						"已恢复 {count} 个账户（数据将在15分钟后自动清除）",
+					toastAllSuccess: "🎉 成功解析全部 {count} 张图片！",
+					toastPartialSuccess:
+						"完成：成功 {success} 张，失败 {fail} 张（查看控制台了解详情）",
+					toastAllFailed:
+						"解析失败，请检查图片质量或尝试手动输入链接",
+					toastExportSuccess: "导出成功",
+					toastDeleteSuccess: "删除成功",
+					toastClearSuccess: "已清空所有数据",
+					toastParseSuccess: "✅ 成功解析 {count} 个账户",
+					toastNoAccounts: "未找到有效账户",
+					toastInvalidInput: "请输入链接",
+					toastQRExportSuccess: "成功导出 {count} 个二维码",
+					toastNoExport: "没有可导出的账户",
+
+					// Error Messages
+					errorInvalidLink:
+						"请输入有效的 Google Authenticator 迁移链接",
+					errorMissingData: "链接格式错误：缺少数据部分",
+					errorBase64: "数据格式错误：无法解码",
+					errorProtobuf: "数据损坏：",
+					errorQRGeneration: "二维码生成失败",
+					errorExportFailed: "导出失败",
+
+					// Confirm Dialog
+					confirmDelete: "确定删除？",
+					confirmDeleteMsg: "此操作将从列表删除该账户",
+					confirmClearAll: "确定清空所有账户？",
+					confirmClearAllMsg:
+						"此操作将永久删除所有敏感数据，无法恢复",
+				},
+				en: {
+					// Navigation
+					appTitle: "GAuth Migrator Pro",
+					exportBtn: "Export Data",
+
+					// Upload Section
+					uploadTitle: "Google Authenticator Local Migration",
+					uploadDesc:
+						'<span style="color: var(--success); font-weight: 600">100% Offline Browser Processing</span>, Dual-Engine Parsing, Auto-Enhancement, Batch Support',
+					selectImages: "Select Images",
+					linkParse: "Parse Link",
+
+					// Info Banner
+					infoBannerTitle: "🔒 Data Security Notice",
+					infoBannerText:
+						'Your account data is securely stored in your local browser (auto-deleted after 15 minutes). <span class="info-banner-highlight">After migration, please click the "Clear" button to delete all sensitive data</span> to ensure account security.',
+
+					// Stats Bar
+					parsed: "Parsed",
+					accounts: "accounts",
+					search: "Search...",
+					clear: "Clear",
+
+					// Empty State
+					emptyState: "No data",
+
+					// Modals - Export
+					exportModalTitle: "Select Export Format",
+					exportBitwarden: "Bitwarden (JSON)",
+					exportBitwardenDesc: "For Bitwarden, Vaultwarden import",
+					exportCSV: "Universal CSV",
+					exportCSVDesc: "For 1Password, KeePass, Enpass, LastPass",
+					exportTxt: "Plain URI Text (.txt)",
+					exportTxtDesc:
+						"For Aegis, 2FAS or generate new QR codes (universal format)",
+					exportQR: "QR Code Package (.zip)",
+					exportQRDesc:
+						"Generate QR code images for each key and package for download",
+
+					// Modals - Progress
+					progressTitle: "Processing",
+					progressInit: "Initializing...",
+
+					// Modals - Manual
+					manualTitle: "Manual Parse",
+					manualPlaceholder: "Paste otpauth-migration://...",
+					manualConfirm: "Confirm Parse",
+
+					// Modals - QR
+					qrTitle: "QR Code",
+					qrAccount: "Account Name",
+					qrIssuer: "Issuer",
+					qrType: "Type",
+					qrAlgo: "Algorithm",
+					qrUnknown: "Unknown",
+
+					// Modals - Confirm
+					confirmTitle: "Confirm Action",
+					confirmMessage: "This action cannot be undone",
+					confirmCancel: "Cancel",
+					confirmOK: "Confirm",
+
+					// Card
+					cardQR: "QR Code",
+					cardDelete: "Delete",
+					cardUnnamed: "Unnamed Account",
+
+					// Toast Messages
+					toastRecovered:
+						"Recovered {count} accounts (data will auto-delete after 15 minutes)",
+					toastAllSuccess:
+						"🎉 Successfully parsed all {count} images!",
+					toastPartialSuccess:
+						"Completed: {success} succeeded, {fail} failed (check console for details)",
+					toastAllFailed:
+						"Parsing failed, please check image quality or try manual input",
+					toastExportSuccess: "Export successful",
+					toastDeleteSuccess: "Deleted successfully",
+					toastClearSuccess: "All data cleared",
+					toastParseSuccess:
+						"✅ Successfully parsed {count} accounts",
+					toastNoAccounts: "No valid accounts found",
+					toastInvalidInput: "Please enter a link",
+					toastQRExportSuccess:
+						"Successfully exported {count} QR codes",
+					toastNoExport: "No accounts to export",
+
+					// Error Messages
+					errorInvalidLink:
+						"Please enter a valid Google Authenticator migration link",
+					errorMissingData: "Link format error: missing data field",
+					errorBase64: "Data format error: cannot decode",
+					errorProtobuf: "Data corrupted: ",
+					errorQRGeneration: "QR code generation failed",
+					errorExportFailed: "Export failed",
+
+					// Confirm Dialog
+					confirmDelete: "Confirm Delete?",
+					confirmDeleteMsg:
+						"This will remove the account from the list",
+					confirmClearAll: "Clear All Accounts?",
+					confirmClearAllMsg:
+						"This will permanently delete all sensitive data and cannot be undone",
+				},
+			};
+
+			let currentLang = "zh";
+
+			function t(key, params = {}) {
+				let text = i18n[currentLang][key] || i18n.zh[key] || key;
+				Object.keys(params).forEach((param) => {
+					text = text.replace(`{${param}}`, params[param]);
+				});
+				return text;
+			}
+
+			function setLanguage(lang) {
+				currentLang = lang;
+				localStorage.setItem("preferred_language", lang);
+				updateUILanguage();
+			}
+
+			function detectLanguage() {
+				const saved = localStorage.getItem("preferred_language");
+				if (saved) return saved;
+				const browserLang =
+					navigator.language || navigator.userLanguage;
+				return browserLang.startsWith("zh") ? "zh" : "en";
+			}
+
+			function updateUILanguage() {
+				// Update navigation
+				document.getElementById("navTitle").textContent = t("appTitle");
+				document.getElementById("exportBtnText").textContent =
+					t("exportBtn");
+
+				// Update upload section
+				const uploadSection =
+					document.querySelector(".upload-content h2");
+				if (uploadSection) {
+					uploadSection.textContent = t("uploadTitle");
+				}
+				const uploadDesc = document.querySelector(".upload-content p");
+				if (uploadDesc) {
+					uploadDesc.innerHTML = t("uploadDesc");
+				}
+				const selectImagesBtn = document.querySelector(
+					".upload-content .btn-primary"
+				);
+				if (selectImagesBtn) {
+					selectImagesBtn.textContent = t("selectImages");
+				}
+				const linkParseBtn = document.querySelector(
+					".upload-content .btn-secondary"
+				);
+				if (linkParseBtn) {
+					linkParseBtn.textContent = t("linkParse");
+				}
+
+				// Update info banner
+				const infoBannerTitle =
+					document.querySelector(".info-banner-title");
+				if (infoBannerTitle) {
+					infoBannerTitle.textContent = t("infoBannerTitle");
+				}
+				const infoBannerText =
+					document.querySelector(".info-banner-text");
+				if (infoBannerText) {
+					infoBannerText.innerHTML = t("infoBannerText");
+				}
+
+				// Update stats bar
+				const statsBarText = document.querySelector(
+					"#statsBar > div:first-child"
+				);
+				if (statsBarText) {
+					const count =
+						document.getElementById("countDisplay").textContent;
+					statsBarText.innerHTML = `${t(
+						"parsed"
+					)} <span id="countDisplay" style="color: var(--primary)">${count}</span> ${t(
+						"accounts"
+					)}`;
+				}
+				const searchInput = document.getElementById("searchInput");
+				if (searchInput) {
+					searchInput.placeholder = t("search");
+				}
+				const clearBtn = document.querySelector(
+					"#statsBar .btn-danger"
+				);
+				if (clearBtn) {
+					clearBtn.textContent = t("clear");
+				}
+
+				// Update empty state
+				const emptyState = document.getElementById("emptyState");
+				if (emptyState) {
+					emptyState.textContent = t("emptyState");
+				}
+
+				// Update export modal
+				document.querySelector("#exportModal h3").textContent =
+					t("exportModalTitle");
+				const exportOptions = document.querySelectorAll(
+					"#exportModal .export-option"
+				);
+				if (exportOptions[0]) {
+					exportOptions[0].querySelector("h4").textContent =
+						t("exportBitwarden");
+					exportOptions[0].querySelector("p").textContent = t(
+						"exportBitwardenDesc"
+					);
+				}
+				if (exportOptions[1]) {
+					exportOptions[1].querySelector("h4").textContent =
+						t("exportCSV");
+					exportOptions[1].querySelector("p").textContent =
+						t("exportCSVDesc");
+				}
+				if (exportOptions[2]) {
+					exportOptions[2].querySelector("h4").textContent =
+						t("exportTxt");
+					exportOptions[2].querySelector("p").textContent =
+						t("exportTxtDesc");
+				}
+				if (exportOptions[3]) {
+					exportOptions[3].querySelector("h4").textContent =
+						t("exportQR");
+					exportOptions[3].querySelector("p").textContent =
+						t("exportQRDesc");
+				}
+
+				// Update progress modal
+				document.querySelector("#progressModal h3").textContent =
+					t("progressTitle");
+				const progressText = document.getElementById("progressText");
+				if (progressText && progressText.textContent === "初始化...") {
+					progressText.textContent = t("progressInit");
+				}
+
+				// Update manual modal
+				document.querySelector("#manualModal h3").textContent =
+					t("manualTitle");
+				const manualInput = document.getElementById("manualInput");
+				if (manualInput) {
+					manualInput.placeholder = t("manualPlaceholder");
+				}
+				const manualConfirmBtn = document.querySelector(
+					"#manualModal .btn-primary"
+				);
+				if (manualConfirmBtn) {
+					manualConfirmBtn.textContent = t("manualConfirm");
+				}
+
+				// Update confirm modal
+				const confirmTitle = document.getElementById("confirmTitle");
+				const confirmMessage =
+					document.getElementById("confirmMessage");
+				if (confirmTitle && confirmTitle.textContent === "确认操作") {
+					confirmTitle.textContent = t("confirmTitle");
+				}
+				if (
+					confirmMessage &&
+					confirmMessage.textContent === "此操作无法撤销"
+				) {
+					confirmMessage.textContent = t("confirmMessage");
+				}
+				const confirmBtns = document.querySelectorAll(
+					"#confirmModal button"
+				);
+				if (confirmBtns[0] && confirmBtns[0].textContent === "取消") {
+					confirmBtns[0].textContent = t("confirmCancel");
+				}
+				if (confirmBtns[1] && confirmBtns[1].textContent === "确认") {
+					confirmBtns[1].textContent = t("confirmOK");
+				}
+
+				// Update language button active state
+				document.querySelectorAll(".lang-btn").forEach((btn) => {
+					btn.classList.toggle(
+						"active",
+						btn.dataset.lang === currentLang
+					);
+				});
+
+				// Re-render account cards with translated text
+				renderGrid();
+			}
+
 			// === State ===
 			let state = { accounts: [] };
+			const DB_NAME = "GAuthMigratorDB";
+			const DB_VERSION = 1;
+			const STORE_NAME = "accounts";
+			const EXPIRY_MINUTES = 15;
+			let db = null;
+
+			// === IndexedDB Setup ===
+			async function initDB() {
+				return new Promise((resolve, reject) => {
+					const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+					request.onerror = () => reject(request.error);
+					request.onsuccess = () => {
+						db = request.result;
+						resolve(db);
+					};
+
+					request.onupgradeneeded = (event) => {
+						const db = event.target.result;
+						if (!db.objectStoreNames.contains(STORE_NAME)) {
+							db.createObjectStore(STORE_NAME);
+						}
+					};
+				});
+			}
+
+			async function saveToIndexedDB(data) {
+				if (!db) return;
+				try {
+					const tx = db.transaction(STORE_NAME, "readwrite");
+					const store = tx.objectStore(STORE_NAME);
+					const record = {
+						accounts: data,
+						timestamp: Date.now(),
+					};
+					store.put(record, "data");
+					await new Promise((resolve, reject) => {
+						tx.oncomplete = resolve;
+						tx.onerror = reject;
+					});
+				} catch (error) {
+					console.error("保存到 IndexedDB 失败:", error);
+				}
+			}
+
+			async function loadFromIndexedDB() {
+				if (!db) return null;
+				try {
+					const tx = db.transaction(STORE_NAME, "readonly");
+					const store = tx.objectStore(STORE_NAME);
+					const request = store.get("data");
+
+					return new Promise((resolve) => {
+						request.onsuccess = () => {
+							const data = request.result;
+							if (!data) {
+								resolve(null);
+								return;
+							}
+
+							// 检查是否过期（15分钟）
+							const elapsed = Date.now() - data.timestamp;
+							const expiryMs = EXPIRY_MINUTES * 60 * 1000;
+
+							if (elapsed > expiryMs) {
+								console.log("数据已过期，自动清除");
+								clearIndexedDB();
+								resolve(null);
+							} else {
+								resolve(data.accounts);
+							}
+						};
+						request.onerror = () => resolve(null);
+					});
+				} catch (error) {
+					console.error("从 IndexedDB 加载失败:", error);
+					return null;
+				}
+			}
+
+			async function clearIndexedDB() {
+				if (!db) return;
+				try {
+					const tx = db.transaction(STORE_NAME, "readwrite");
+					const store = tx.objectStore(STORE_NAME);
+					store.delete("data");
+					await new Promise((resolve, reject) => {
+						tx.oncomplete = resolve;
+						tx.onerror = reject;
+					});
+				} catch (error) {
+					console.error("清除 IndexedDB 失败:", error);
+				}
+			}
 
 			// === Icons ===
 			const ICONS = {
@@ -777,93 +1603,116 @@
 				openModal("progressModal");
 				const files = Array.from(fileList);
 				const total = files.length;
-				let success = 0,
-					fail = 0;
+				let success = 0;
+				const failedFiles = [];
+				const MAX_RETRIES = 2;
 
 				for (let i = 0; i < total; i++) {
 					const file = files[i];
-					updateProgress(i + 1, total, file.name);
-					try {
-						const rawText = await decodeViolently(file);
-						const newAcc = parseProtobuf(rawText);
-						mergeAccounts(newAcc);
-						success++;
-					} catch (e) {
-						console.error(e);
-						fail++;
+					let lastError = null;
+					let retryCount = 0;
+					let succeeded = false;
+
+					// 重试机制
+					while (retryCount <= MAX_RETRIES && !succeeded) {
+						try {
+							const progressMsg =
+								retryCount > 0
+									? `${file.name} (重试 ${retryCount}/${MAX_RETRIES})`
+									: file.name;
+							updateProgress(i + 1, total, progressMsg);
+
+							const rawText = await decodeViolently(file);
+							const newAcc = parseProtobuf(rawText);
+
+							if (newAcc && newAcc.length > 0) {
+								mergeAccounts(newAcc);
+								success++;
+								succeeded = true;
+								console.log(
+									`✓ ${file.name}: 成功解析 ${newAcc.length} 个账户`
+								);
+							} else {
+								throw new Error("未解析到任何账户");
+							}
+						} catch (e) {
+							lastError = e;
+							retryCount++;
+
+							if (retryCount <= MAX_RETRIES) {
+								console.log(
+									`✗ ${file.name}: ${e.message}，准备重试...`
+								);
+								await new Promise((r) => setTimeout(r, 300));
+							}
+						}
 					}
+
+					// 记录失败的文件
+					if (!succeeded) {
+						failedFiles.push({
+							name: file.name,
+							error: lastError?.message || "未知错误",
+							type: lastError?.message.includes("解码")
+								? "二维码识别"
+								: lastError?.message.includes("Protobuf")
+								? "数据解析"
+								: "其他",
+						});
+						console.error(
+							`✗ ${file.name}: 最终失败 - ${lastError?.message}`
+						);
+					}
+
 					await new Promise((r) => setTimeout(r, 50));
 				}
 
 				setTimeout(() => {
 					closeModal("progressModal");
 					renderGrid();
-					if (success > 0)
-						showToast(
-							`完成：成功 ${success} 张，失败 ${fail} 张`,
-							fail > 0 ? "error" : "success"
-						);
-					else showToast(`解析失败，请尝试手动输入`, "error");
+
+					const fail = failedFiles.length;
+					if (success > 0) {
+						if (fail === 0) {
+							showToast(
+								t("toastAllSuccess", { count: success }),
+								"success"
+							);
+						} else {
+							showToast(
+								t("toastPartialSuccess", { success, fail }),
+								"error"
+							);
+							console.group("❌ 失败文件详情");
+							failedFiles.forEach((f) => {
+								console.error(
+									`📄 ${f.name}\n   类型: ${f.type}\n   原因: ${f.error}`
+								);
+							});
+							console.groupEnd();
+						}
+					} else {
+						showToast(t("toastAllFailed"), "error");
+						console.group("❌ 所有文件均失败");
+						failedFiles.forEach((f) => {
+							console.error(`📄 ${f.name}: ${f.error}`);
+						});
+						console.groupEnd();
+					}
 				}, 500);
 			}
 
 			// === Core: Decoding (Hybrid Engine) ===
 			async function decodeViolently(file) {
-				const img = await loadImage(file);
-				const strategies = [
-					{ name: "Raw", fn: null },
-					{
-						name: "Bin-128",
-						fn: (ctx, w, h) => filterBinarize(ctx, w, h, 128),
-					},
-					{
-						name: "Invert",
-						fn: (ctx, w, h) => filterInvert(ctx, w, h),
-					},
-					{ name: "Scale-2x", scale: 2, fn: null },
-					{
-						name: "Bin-100",
-						fn: (ctx, w, h) => filterBinarize(ctx, w, h, 100),
-					},
-				];
-				const zxing = new ZXing.BrowserMultiFormatReader();
+				let img = await loadImage(file);
 
-				for (const strat of strategies) {
-					try {
-						const canvas = document.createElement("canvas");
-						const scale = strat.scale || 1;
-						canvas.width = img.width * scale;
-						canvas.height = img.height * scale;
-						const ctx = canvas.getContext("2d");
-						ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-						if (strat.fn)
-							strat.fn(ctx, canvas.width, canvas.height);
-						const imgData = ctx.getImageData(
-							0,
-							0,
-							canvas.width,
-							canvas.height
-						);
-
-						if (window.jsQR) {
-							const code = jsQR(
-								imgData.data,
-								canvas.width,
-								canvas.height
-							);
-							if (code) return code.data;
-						}
-						const dataUrl = canvas.toDataURL("image/jpeg", 0.9);
-						const res = await zxing.decodeFromImage(
-							undefined,
-							dataUrl
-						);
-						if (res) return res.text;
-					} catch (e) {
-						continue;
-					}
+				// 性能优化：大图片自动缩放
+				const MAX_SIZE = 1500;
+				if (img.width > MAX_SIZE || img.height > MAX_SIZE) {
+					img = await resizeImage(img, MAX_SIZE);
 				}
 
+				// 策略1: 浏览器原生API（最快最准）
 				if ("BarcodeDetector" in window) {
 					try {
 						const det = new BarcodeDetector({
@@ -871,9 +1720,138 @@
 						});
 						const bars = await det.detect(img);
 						if (bars.length) return bars[0].rawValue;
-					} catch (e) {}
+					} catch (e) {
+						console.log("BarcodeDetector 失败:", e.message);
+					}
 				}
-				throw new Error("Failed");
+
+				// 创建复用的 canvas
+				const canvas = document.createElement("canvas");
+				canvas.width = img.width;
+				canvas.height = img.height;
+				const ctx = canvas.getContext("2d", {
+					willReadFrequently: true,
+				});
+
+				// 优化的策略列表（按成功率排序）
+				const strategies = [
+					{ name: "Raw", fn: null, engines: ["jsQR", "zxing"] },
+					{ name: "Sharpen", fn: filterSharpen, engines: ["jsQR"] },
+					{
+						name: "AdaptiveBin",
+						fn: filterAdaptiveBinarize,
+						engines: ["jsQR"],
+					},
+					{
+						name: "Bin-128",
+						fn: (c, w, h) => filterBinarize(c, w, h, 128),
+						engines: ["jsQR"],
+					},
+					{ name: "Denoise", fn: filterDenoise, engines: ["jsQR"] },
+					{
+						name: "HighContrast",
+						fn: filterHighContrast,
+						engines: ["jsQR", "zxing"],
+					},
+					{ name: "Invert", fn: filterInvert, engines: ["jsQR"] },
+					{ name: "Scale-2x", scale: 2, fn: null, engines: ["jsQR"] },
+				];
+
+				const zxing = new ZXing.BrowserMultiFormatReader();
+
+				for (const strat of strategies) {
+					try {
+						// 调整 canvas 大小
+						const scale = strat.scale || 1;
+						if (scale !== 1) {
+							canvas.width = img.width * scale;
+							canvas.height = img.height * scale;
+						} else {
+							canvas.width = img.width;
+							canvas.height = img.height;
+						}
+
+						// 绘制图像
+						ctx.clearRect(0, 0, canvas.width, canvas.height);
+						ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+						// 应用滤镜
+						if (strat.fn) {
+							strat.fn(ctx, canvas.width, canvas.height);
+						}
+
+						// 尝试不同的解码引擎
+						for (const engine of strat.engines) {
+							if (engine === "jsQR" && window.jsQR) {
+								const imgData = ctx.getImageData(
+									0,
+									0,
+									canvas.width,
+									canvas.height
+								);
+								const code = jsQR(
+									imgData.data,
+									canvas.width,
+									canvas.height,
+									{
+										inversionAttempts: "dontInvert",
+									}
+								);
+								if (code) {
+									console.log(
+										`成功策略: ${strat.name} (jsQR)`
+									);
+									return code.data;
+								}
+							} else if (engine === "zxing") {
+								const dataUrl = canvas.toDataURL("image/png");
+								const res = await zxing.decodeFromImage(
+									undefined,
+									dataUrl
+								);
+								if (res) {
+									console.log(
+										`成功策略: ${strat.name} (ZXing)`
+									);
+									return res.text;
+								}
+							}
+						}
+					} catch (e) {
+						// 继续尝试下一个策略
+					}
+				}
+
+				throw new Error("所有解码策略均失败");
+			}
+
+			function resizeImage(img, maxSize) {
+				return new Promise((resolve) => {
+					const canvas = document.createElement("canvas");
+					let width = img.width;
+					let height = img.height;
+
+					if (width > height) {
+						if (width > maxSize) {
+							height = (height * maxSize) / width;
+							width = maxSize;
+						}
+					} else {
+						if (height > maxSize) {
+							width = (width * maxSize) / height;
+							height = maxSize;
+						}
+					}
+
+					canvas.width = width;
+					canvas.height = height;
+					const ctx = canvas.getContext("2d");
+					ctx.drawImage(img, 0, 0, width, height);
+
+					const resized = new Image();
+					resized.onload = () => resolve(resized);
+					resized.src = canvas.toDataURL();
+				});
 			}
 
 			function loadImage(file) {
@@ -888,20 +1866,148 @@
 					i.src = u;
 				});
 			}
-			function filterBinarize(ctx, w, h, t) {
+			// === Image Filters ===
+			function filterBinarize(ctx, w, h, threshold) {
 				const d = ctx.getImageData(0, 0, w, h);
 				for (let i = 0; i < d.data.length; i += 4) {
-					const v =
+					const gray =
 						0.299 * d.data[i] +
-							0.587 * d.data[i + 1] +
-							0.114 * d.data[i + 2] >=
-						t
-							? 255
-							: 0;
+						0.587 * d.data[i + 1] +
+						0.114 * d.data[i + 2];
+					const v = gray >= threshold ? 255 : 0;
 					d.data[i] = d.data[i + 1] = d.data[i + 2] = v;
 				}
 				ctx.putImageData(d, 0, 0);
 			}
+
+			function filterAdaptiveBinarize(ctx, w, h) {
+				const d = ctx.getImageData(0, 0, w, h);
+				const gray = new Uint8Array(w * h);
+
+				// 转灰度
+				for (let i = 0; i < d.data.length; i += 4) {
+					gray[i / 4] =
+						0.299 * d.data[i] +
+						0.587 * d.data[i + 1] +
+						0.114 * d.data[i + 2];
+				}
+
+				// Otsu 自动阈值
+				let histogram = new Array(256).fill(0);
+				for (let i = 0; i < gray.length; i++) {
+					histogram[Math.floor(gray[i])]++;
+				}
+
+				let total = gray.length;
+				let sum = 0;
+				for (let i = 0; i < 256; i++) sum += i * histogram[i];
+
+				let sumB = 0,
+					wB = 0,
+					wF = 0,
+					maxVar = 0,
+					threshold = 0;
+				for (let t = 0; t < 256; t++) {
+					wB += histogram[t];
+					if (wB === 0) continue;
+					wF = total - wB;
+					if (wF === 0) break;
+
+					sumB += t * histogram[t];
+					let mB = sumB / wB;
+					let mF = (sum - sumB) / wF;
+					let varBetween = wB * wF * (mB - mF) * (mB - mF);
+
+					if (varBetween > maxVar) {
+						maxVar = varBetween;
+						threshold = t;
+					}
+				}
+
+				// 应用阈值
+				for (let i = 0; i < d.data.length; i += 4) {
+					const v = gray[i / 4] >= threshold ? 255 : 0;
+					d.data[i] = d.data[i + 1] = d.data[i + 2] = v;
+				}
+				ctx.putImageData(d, 0, 0);
+			}
+
+			function filterSharpen(ctx, w, h) {
+				const d = ctx.getImageData(0, 0, w, h);
+				const original = new Uint8ClampedArray(d.data);
+				const kernel = [0, -1, 0, -1, 5, -1, 0, -1, 0];
+
+				for (let y = 1; y < h - 1; y++) {
+					for (let x = 1; x < w - 1; x++) {
+						for (let c = 0; c < 3; c++) {
+							let sum = 0;
+							for (let ky = -1; ky <= 1; ky++) {
+								for (let kx = -1; kx <= 1; kx++) {
+									const idx =
+										((y + ky) * w + (x + kx)) * 4 + c;
+									sum +=
+										original[idx] *
+										kernel[(ky + 1) * 3 + (kx + 1)];
+								}
+							}
+							d.data[(y * w + x) * 4 + c] = Math.max(
+								0,
+								Math.min(255, sum)
+							);
+						}
+					}
+				}
+				ctx.putImageData(d, 0, 0);
+			}
+
+			function filterDenoise(ctx, w, h) {
+				const d = ctx.getImageData(0, 0, w, h);
+				const original = new Uint8ClampedArray(d.data);
+
+				// 简单中值滤波
+				for (let y = 1; y < h - 1; y++) {
+					for (let x = 1; x < w - 1; x++) {
+						for (let c = 0; c < 3; c++) {
+							const values = [];
+							for (let ky = -1; ky <= 1; ky++) {
+								for (let kx = -1; kx <= 1; kx++) {
+									values.push(
+										original[
+											((y + ky) * w + (x + kx)) * 4 + c
+										]
+									);
+								}
+							}
+							values.sort((a, b) => a - b);
+							d.data[(y * w + x) * 4 + c] = values[4]; // 中值
+						}
+					}
+				}
+				ctx.putImageData(d, 0, 0);
+			}
+
+			function filterHighContrast(ctx, w, h) {
+				const d = ctx.getImageData(0, 0, w, h);
+				const factor = 1.5;
+				const intercept = 128 * (1 - factor);
+
+				for (let i = 0; i < d.data.length; i += 4) {
+					d.data[i] = Math.max(
+						0,
+						Math.min(255, d.data[i] * factor + intercept)
+					);
+					d.data[i + 1] = Math.max(
+						0,
+						Math.min(255, d.data[i + 1] * factor + intercept)
+					);
+					d.data[i + 2] = Math.max(
+						0,
+						Math.min(255, d.data[i + 2] * factor + intercept)
+					);
+				}
+				ctx.putImageData(d, 0, 0);
+			}
+
 			function filterInvert(ctx, w, h) {
 				const d = ctx.getImageData(0, 0, w, h);
 				for (let i = 0; i < d.data.length; i += 4) {
@@ -914,25 +2020,65 @@
 
 			// === Core: Protobuf ===
 			function parseProtobuf(urlStr) {
-				if (!urlStr.includes("otpauth-migration"))
-					throw new Error("Format error");
+				if (!urlStr || typeof urlStr !== "string") {
+					throw new Error("无效的输入");
+				}
+
+				if (!urlStr.includes("otpauth-migration")) {
+					throw new Error("不是有效的 Google Authenticator 迁移链接");
+				}
+
 				let b64 = "";
 				try {
-					b64 = new URL(urlStr).searchParams.get("data");
+					const url = new URL(urlStr);
+					b64 = url.searchParams.get("data");
 				} catch {
-					b64 = urlStr.split("data=")[1]?.split("&")[0];
+					// 容错：手动解析 URL
+					const match = urlStr.match(/[?&]data=([^&]+)/);
+					b64 = match ? match[1] : null;
 				}
-				if (!b64) throw new Error("No data");
+
+				if (!b64) {
+					throw new Error("链接中缺少数据字段");
+				}
+
+				// 解码 URL 编码并转换 Base64URL 到标准 Base64
 				b64 = decodeURIComponent(b64)
 					.replace(/-/g, "+")
 					.replace(/_/g, "/");
-				const bin = atob(b64);
-				const bytes = new Uint8Array(bin.length);
-				for (let i = 0; i < bin.length; i++)
-					bytes[i] = bin.charCodeAt(i);
+
+				// Base64 解码（先尝试不加padding，失败再加）
+				let bytes;
+				try {
+					const bin = atob(b64);
+					bytes = new Uint8Array(bin.length);
+					for (let i = 0; i < bin.length; i++) {
+						bytes[i] = bin.charCodeAt(i);
+					}
+				} catch (e) {
+					// 尝试添加 padding
+					try {
+						let paddedB64 = b64;
+						while (paddedB64.length % 4 !== 0) {
+							paddedB64 += "=";
+						}
+						const bin = atob(paddedB64);
+						bytes = new Uint8Array(bin.length);
+						for (let i = 0; i < bin.length; i++) {
+							bytes[i] = bin.charCodeAt(i);
+						}
+					} catch (e2) {
+						throw new Error("Base64 解码失败");
+					}
+				}
+
+				if (bytes.length === 0) {
+					throw new Error("解码后数据为空");
+				}
 
 				const list = [];
 				let ptr = 0;
+
 				const readVarint = () => {
 					let r = 0,
 						s = 0,
@@ -946,70 +2092,179 @@
 				};
 
 				while (ptr < bytes.length) {
-					const k = readVarint();
-					const f = k >> 3;
-					const t = k & 7;
-					if (f === 1 && t === 2) {
-						const len = readVarint();
-						const end = ptr + len;
-						const item = { algo: "SHA1", digits: 6, type: "totp" };
-						while (ptr < end) {
-							const pk = readVarint();
-							const pf = pk >> 3;
-							const pt = pk & 7;
-							if (pt === 2) {
-								const pl = readVarint();
-								const val = bytes.slice(ptr, ptr + pl);
-								ptr += pl;
-								const txt = new TextDecoder().decode(val);
-								if (pf === 1) {
-									const a =
-										"ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-									let bs = 0,
-										v = 0,
-										out = "";
-									for (const b of val) {
-										v = (v << 8) | b;
-										bs += 8;
-										while (bs >= 5) {
-											out += a[(v >>> (bs - 5)) & 31];
-											bs -= 5;
+					try {
+						const k = readVarint();
+						const f = k >> 3;
+						const t = k & 7;
+
+						if (f === 1 && t === 2) {
+							// OTP 参数消息
+							const len = readVarint();
+							const end = ptr + len;
+
+							if (end > bytes.length) {
+								console.warn("消息长度超出范围，跳过此账户");
+								ptr = bytes.length; // 防止死循环
+								break;
+							}
+
+							const item = {
+								algo: "SHA1",
+								digits: 6,
+								type: "totp",
+								period: 30,
+							};
+
+							while (ptr < end) {
+								const pk = readVarint();
+								const pf = pk >> 3;
+								const pt = pk & 7;
+
+								if (pt === 2) {
+									// 字符串/字节字段
+									const pl = readVarint();
+									if (ptr + pl > bytes.length) {
+										console.warn("字段长度超出范围，跳过");
+										ptr = bytes.length; // 防止越界
+										break;
+									}
+									const val = bytes.slice(ptr, ptr + pl);
+									ptr += pl;
+
+									if (pf === 1) {
+										// Secret字段 - 二进制数据直接Base32编码
+										try {
+											const alphabet =
+												"ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+											let bs = 0,
+												v = 0,
+												out = "";
+											for (const b of val) {
+												v = (v << 8) | b;
+												bs += 8;
+												while (bs >= 5) {
+													out +=
+														alphabet[
+															(v >>> (bs - 5)) &
+																31
+														];
+													bs -= 5;
+												}
+											}
+											if (bs > 0) {
+												out +=
+													alphabet[
+														(v << (5 - bs)) & 31
+													];
+											}
+											item.secret = out;
+										} catch (e) {
+											console.warn("Secret编码失败:", e);
+										}
+									} else {
+										// 其他字段 - UTF-8文本
+										try {
+											const txt = new TextDecoder(
+												"utf-8"
+											).decode(val);
+											if (pf === 2) {
+												item.name = txt;
+											} else if (pf === 3) {
+												item.issuer = txt;
+											} else if (pf === 4) {
+												item.algo = txt;
+											}
+										} catch (e) {
+											console.warn(
+												"文本字段解码失败:",
+												e
+											);
 										}
 									}
-									if (bs > 0) out += a[(v << (5 - bs)) & 31];
-									item.secret = out;
-								} else if (pf === 2) item.name = txt;
-								else if (pf === 3) item.issuer = txt;
-								else if (pf === 4) item.algo = txt;
-							} else if (pt === 0) {
-								const val = readVarint();
-								if (pf === 4)
-									item.algo =
-										{
-											1: "SHA1",
-											2: "SHA256",
-											3: "SHA512",
-											4: "MD5",
-										}[val] || "SHA1";
-								else if (pf === 5)
-									item.digits = val === 2 ? 8 : 6;
-								else if (pf === 6)
-									item.type = val === 1 ? "hotp" : "totp";
+								} else if (pt === 0) {
+									// Varint 字段
+									const val = readVarint();
+
+									if (pf === 4) {
+										// Algorithm
+										item.algo =
+											{
+												1: "SHA1",
+												2: "SHA256",
+												3: "SHA512",
+												4: "MD5",
+											}[val] || "SHA1";
+									} else if (pf === 5) {
+										// Digits
+										item.digits = val === 2 ? 8 : 6;
+									} else if (pf === 6) {
+										// Type
+										item.type = val === 1 ? "hotp" : "totp";
+									} else if (pf === 7) {
+										// Counter (for HOTP)
+										item.counter = val;
+									}
+								} else {
+									// 跳过未知字段
+									if (pt === 2) {
+										const skipLen = readVarint();
+										ptr += skipLen;
+									} else if (pt === 0) {
+										readVarint();
+									} else if (pt === 5) {
+										ptr += 4;
+									} else if (pt === 1) {
+										ptr += 8;
+									}
+								}
+							}
+
+							// 验证必需字段
+							if (item.secret && item.secret.length > 0) {
+								// 设置默认值
+								if (!item.name || item.name.trim() === "") {
+									item.name = item.issuer || "未命名账户";
+								}
+								list.push(item);
 							} else {
-								if (pt === 2) ptr += readVarint();
-								else if (pt === 0) readVarint();
-								else if (pt === 5) ptr += 4;
-								else if (pt === 1) ptr += 8;
+								console.warn("跳过无效账户（缺少 secret）");
+							}
+						} else {
+							// 跳过顶级未知字段
+							if (t === 2) {
+								const skipLen = readVarint();
+								ptr += skipLen;
+							} else if (t === 0) {
+								readVarint();
+							} else if (t === 5) {
+								ptr += 4;
+							} else if (t === 1) {
+								ptr += 8;
 							}
 						}
-						if (item.secret) list.push(item);
-					} else {
-						if (t === 2) ptr += readVarint();
-						else if (t === 0) readVarint();
-						else if (t === 5) ptr += 4;
-						else if (t === 1) ptr += 8;
+					} catch (e) {
+						// 单个账户解析失败，记录并继续下一个
+						console.warn("跳过一个解析失败的账户:", e.message);
+						// 尝试恢复到安全位置，跳过剩余数据
+						try {
+							if (ptr < bytes.length) {
+								// 尝试跳过当前损坏的消息
+								const skipLen = readVarint();
+								if (ptr + skipLen <= bytes.length) {
+									ptr += skipLen;
+								}
+							}
+						} catch {
+							// 无法恢复，退出循环
+							break;
+						}
 					}
 				}
+
+				if (list.length === 0) {
+					throw new Error("未找到有效的 OTP 账户");
+				}
+
 				return list;
 			}
 
@@ -1019,6 +2274,8 @@
 				newItems.forEach((item) => {
 					if (!existing.has(item.secret)) state.accounts.push(item);
 				});
+				// 保存到 IndexedDB
+				saveToIndexedDB(state.accounts);
 			}
 
 			function renderGrid(filter = "") {
@@ -1033,21 +2290,24 @@
 							(o.acc.issuer || "").toLowerCase().includes(f)
 					);
 
+				const hasAccounts = state.accounts.length > 0;
 				document
 					.getElementById("statsBar")
-					.classList.toggle("hidden", state.accounts.length === 0);
+					.classList.toggle("hidden", !hasAccounts);
+				document
+					.getElementById("infoBanner")
+					.classList.toggle("hidden", !hasAccounts);
 				document.getElementById("emptyState").style.display =
-					state.accounts.length === 0 ? "block" : "none";
+					hasAccounts ? "none" : "block";
 				document.getElementById("countDisplay").textContent =
 					state.accounts.length;
 				document.getElementById("exportMenuBtn").disabled =
-					state.accounts.length === 0;
+					!hasAccounts;
 
 				list.forEach(({ acc, i }) => {
 					const card = document.createElement("div");
 					card.className = "card";
 					card.innerHTML = `
-                <button class="delete-btn" onclick="removeAccount(${i})">✕</button>
                 <div class="card-header">
                     <div class="service-icon">${getIcon(acc)}</div>
                     <div class="card-info">
@@ -1055,12 +2315,28 @@
 						acc.name
 					)}</div>
                         <div class="card-subtitle">${esc(
-							acc.issuer || "Unknown"
+							acc.issuer || t("qrUnknown")
 						)}</div>
                         <div class="tags"><span class="tag totp">${acc.type.toUpperCase()}</span><span class="tag">${
 						acc.algo
-					}</span><span class="tag">${acc.digits}位</span></div>
+					}</span><span class="tag">${acc.digits}${
+						currentLang === "zh" ? "位" : " digits"
+					}</span></div>
                     </div>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-secondary btn-sm btn-icon" onclick="showQRCode(${i})" style="flex: 1;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7"/>
+                            <rect x="14" y="3" width="7" height="7"/>
+                            <rect x="3" y="14" width="7" height="7"/>
+                            <rect x="14" y="14" width="7" height="7"/>
+                        </svg>
+                        ${t("cardQR")}
+                    </button>
+                    <button class="btn delete-btn btn-sm" onclick="removeAccount(${i})">${t(
+						"cardDelete"
+					)}</button>
                 </div>
             `;
 					div.appendChild(card);
@@ -1072,11 +2348,25 @@
 				const name = acc.issuer
 					? `${acc.issuer}:${acc.name}`
 					: acc.name;
-				return `otpauth://${acc.type}/${encodeURIComponent(
+
+				let uri = `otpauth://${acc.type}/${encodeURIComponent(
 					name
-				)}?secret=${acc.secret}&issuer=${encodeURIComponent(
-					acc.issuer || ""
-				)}&digits=${acc.digits}&algorithm=${acc.algo}&period=30`;
+				)}?secret=${acc.secret}`;
+
+				if (acc.issuer) {
+					uri += `&issuer=${encodeURIComponent(acc.issuer)}`;
+				}
+
+				uri += `&digits=${acc.digits}&algorithm=${acc.algo}`;
+
+				// TOTP 使用 period，HOTP 使用 counter
+				if (acc.type === "totp") {
+					uri += `&period=${acc.period || 30}`;
+				} else if (acc.type === "hotp" && acc.counter !== undefined) {
+					uri += `&counter=${acc.counter}`;
+				}
+
+				return uri;
 			}
 
 			window.exportData = (type) => {
@@ -1133,36 +2423,256 @@
 				a.download = name;
 				a.click();
 				closeModal("exportModal");
-				showToast("导出成功", "success");
+				showToast(t("toastExportSuccess"), "success");
 			};
 
 			// === Utils ===
+			let confirmCallback = null;
+
+			window.showConfirm = (title, message, callback) => {
+				document.getElementById("confirmTitle").textContent = title;
+				document.getElementById("confirmMessage").textContent = message;
+				confirmCallback = callback;
+				openModal("confirmModal");
+			};
+
+			window.handleConfirm = () => {
+				if (confirmCallback) {
+					confirmCallback();
+					confirmCallback = null;
+				}
+				closeModal("confirmModal");
+			};
+
 			window.removeAccount = (i) => {
-				if (confirm("确定删除？")) {
+				showConfirm(t("confirmDelete"), t("confirmDeleteMsg"), () => {
 					state.accounts.splice(i, 1);
+					saveToIndexedDB(state.accounts);
 					renderGrid();
-				}
+					showToast(t("toastDeleteSuccess"), "success");
+				});
 			};
+
 			window.confirmClearAll = () => {
-				if (confirm("确定清空？")) {
-					state.accounts = [];
-					renderGrid();
+				showConfirm(
+					t("confirmClearAll"),
+					t("confirmClearAllMsg"),
+					() => {
+						state.accounts = [];
+						clearIndexedDB();
+						renderGrid();
+						showToast(t("toastClearSuccess"), "success");
+					}
+				);
+			};
+			// === QR Code Functions ===
+			window.showQRCode = (index) => {
+				const acc = state.accounts[index];
+				const uri = generateUri(acc);
+
+				try {
+					// 使用 qrcode-generator 库
+					const qr = qrcode(0, "H"); // 0 = auto-detect, 'H' = high error correction
+					qr.addData(uri);
+					qr.make();
+
+					// 创建 canvas 并绘制
+					const canvas = document.getElementById("qrCanvas");
+					const cellSize = 7; // 每个单元格的像素大小
+					const margin = 2; // 边距（单元格数量）
+					const size = qr.getModuleCount();
+					const totalSize = (size + margin * 2) * cellSize;
+
+					canvas.width = totalSize;
+					canvas.height = totalSize;
+					const ctx = canvas.getContext("2d");
+
+					// 白色背景
+					ctx.fillStyle = "#FFFFFF";
+					ctx.fillRect(0, 0, totalSize, totalSize);
+
+					// 绘制二维码
+					ctx.fillStyle = "#000000";
+					for (let row = 0; row < size; row++) {
+						for (let col = 0; col < size; col++) {
+							if (qr.isDark(row, col)) {
+								ctx.fillRect(
+									(col + margin) * cellSize,
+									(row + margin) * cellSize,
+									cellSize,
+									cellSize
+								);
+							}
+						}
+					}
+
+					// 设置标题和信息
+					document.getElementById("qrModalTitle").textContent =
+						acc.name || "二维码";
+					document.getElementById("qrInfo").innerHTML = `
+						<div class="qr-info-row">
+							<span class="qr-info-label">${t("qrAccount")}</span>
+							<span class="qr-info-value">${esc(acc.name)}</span>
+						</div>
+						<div class="qr-info-row">
+							<span class="qr-info-label">${t("qrIssuer")}</span>
+							<span class="qr-info-value">${esc(acc.issuer || "未知")}</span>
+						</div>
+						<div class="qr-info-row">
+							<span class="qr-info-label">${t("qrType")}</span>
+							<span class="qr-info-value">${acc.type.toUpperCase()}</span>
+						</div>
+						<div class="qr-info-row">
+							<span class="qr-info-label">${t("qrAlgo")}</span>
+							<span class="qr-info-value">${acc.algo} / ${acc.digits}位</span>
+						</div>
+					`;
+
+					openModal("qrModal");
+				} catch (error) {
+					showToast(t("errorQRGeneration"), "error");
+					console.error(error);
 				}
 			};
+
+			window.exportQRCodes = async () => {
+				if (state.accounts.length === 0) {
+					showToast(t("toastNoExport"), "error");
+					return;
+				}
+
+				closeModal("exportModal");
+				openModal("progressModal");
+
+				try {
+					const zip = new JSZip();
+					const total = state.accounts.length;
+
+					for (let i = 0; i < total; i++) {
+						const acc = state.accounts[i];
+						updateProgress(i + 1, total, `生成二维码: ${acc.name}`);
+
+						const uri = generateUri(acc);
+
+						// 使用 qrcode-generator 生成高分辨率二维码
+						const qr = qrcode(0, "H");
+						qr.addData(uri);
+						qr.make();
+
+						// 创建高分辨率 canvas
+						const canvas = document.createElement("canvas");
+						const cellSize = 10; // 更大的单元格用于高分辨率
+						const margin = 4;
+						const size = qr.getModuleCount();
+						const totalSize = (size + margin * 2) * cellSize;
+
+						canvas.width = totalSize;
+						canvas.height = totalSize;
+						const ctx = canvas.getContext("2d");
+
+						// 白色背景
+						ctx.fillStyle = "#FFFFFF";
+						ctx.fillRect(0, 0, totalSize, totalSize);
+
+						// 绘制二维码
+						ctx.fillStyle = "#000000";
+						for (let row = 0; row < size; row++) {
+							for (let col = 0; col < size; col++) {
+								if (qr.isDark(row, col)) {
+									ctx.fillRect(
+										(col + margin) * cellSize,
+										(row + margin) * cellSize,
+										cellSize,
+										cellSize
+									);
+								}
+							}
+						}
+
+						// 转换为PNG
+						const blob = await new Promise((resolve) =>
+							canvas.toBlob(resolve, "image/png")
+						);
+
+						// 创建安全的文件名
+						const safeName = (
+							acc.issuer ? `${acc.issuer}_${acc.name}` : acc.name
+						)
+							.replace(/[<>:"/\\|?*]/g, "_")
+							.substring(0, 100);
+
+						zip.file(`${safeName}.png`, blob);
+
+						await new Promise((r) => setTimeout(r, 50));
+					}
+
+					updateProgress(total, total, "正在压缩...");
+					const zipBlob = await zip.generateAsync({ type: "blob" });
+
+					const date = new Date().toISOString().slice(0, 10);
+					const a = document.createElement("a");
+					a.href = URL.createObjectURL(zipBlob);
+					a.download = `qrcodes_${date}.zip`;
+					a.click();
+
+					setTimeout(() => {
+						closeModal("progressModal");
+						showToast(
+							t("toastQRExportSuccess", { count: total }),
+							"success"
+						);
+					}, 500);
+				} catch (error) {
+					closeModal("progressModal");
+					showToast(t("errorExportFailed"), "error");
+					console.error(error);
+				}
+			};
+
 			window.openModal = (id) =>
 				document.getElementById(id).classList.add("show");
 			window.closeModal = (id) =>
 				document.getElementById(id).classList.remove("show");
 			window.processManual = () => {
-				const v = document.getElementById("manualInput").value.trim();
-				if (!v) return;
+				const input = document.getElementById("manualInput");
+				const v = input.value.trim();
+
+				if (!v) {
+					showToast(t("toastInvalidInput"), "error");
+					return;
+				}
+
 				try {
-					mergeAccounts(parseProtobuf(v));
-					renderGrid();
-					closeModal("manualModal");
-					showToast("解析成功", "success");
+					const accounts = parseProtobuf(v);
+					if (accounts && accounts.length > 0) {
+						mergeAccounts(accounts);
+						renderGrid();
+						closeModal("manualModal");
+						input.value = "";
+						showToast(
+							t("toastParseSuccess", { count: accounts.length }),
+							"success"
+						);
+					} else {
+						showToast(t("toastNoAccounts"), "error");
+					}
 				} catch (e) {
-					showToast("格式无效", "error");
+					console.error("手动解析失败:", e);
+					let errorMsg = "解析失败";
+
+					if (e.message.includes("迁移链接")) {
+						errorMsg = "请输入有效的 Google Authenticator 迁移链接";
+					} else if (e.message.includes("数据字段")) {
+						errorMsg = "链接格式错误：缺少数据部分";
+					} else if (e.message.includes("Base64")) {
+						errorMsg = "数据格式错误：无法解码";
+					} else if (e.message.includes("Protobuf")) {
+						errorMsg = "数据损坏：" + e.message;
+					} else {
+						errorMsg = e.message;
+					}
+
+					showToast(errorMsg, "error");
 				}
 			};
 			function updateProgress(i, t, msg) {
@@ -1188,6 +2698,53 @@
 			}
 			function esc(s) {
 				return s ? s.replace(/&/g, "&amp;").replace(/</g, "&lt;") : "";
+			}
+
+			// === Page Initialization ===
+			async function init() {
+				// 检测并设置语言
+				currentLang = detectLanguage();
+				updateUILanguage();
+
+				try {
+					// 初始化 IndexedDB
+					await initDB();
+
+					// 尝试从 IndexedDB 恢复数据
+					const savedAccounts = await loadFromIndexedDB();
+					if (savedAccounts && savedAccounts.length > 0) {
+						state.accounts = savedAccounts;
+						renderGrid();
+						showToast(
+							t("toastRecovered", {
+								count: savedAccounts.length,
+							}),
+							"success"
+						);
+					}
+
+					// 添加模态框点击外部关闭功能
+					const modals = ["exportModal", "manualModal", "qrModal"];
+					modals.forEach((modalId) => {
+						const overlay = document.getElementById(modalId);
+						if (overlay) {
+							overlay.addEventListener("click", (e) => {
+								if (e.target === overlay) {
+									closeModal(modalId);
+								}
+							});
+						}
+					});
+				} catch (error) {
+					console.error("初始化失败:", error);
+				}
+			}
+
+			// 页面加载时初始化
+			if (document.readyState === "loading") {
+				document.addEventListener("DOMContentLoaded", init);
+			} else {
+				init();
 			}
 		</script>
 	</body>
