@@ -107,19 +107,17 @@
 如果不介意，可直接用我部署的版本（纯静态托管）：
 👉 **[https://g-auth.beiai.de](https://g-auth.beiai.de)**
 
-## 📦 本地部署 (推荐)
+## 📥 本地离线部署 (推荐)
 
-为了最大程度保证安全，建议将代码下载到本地运行：
+为了最大程度保证安全，防止任何数据泄露风险，建议使用**全离线单文件版本**：
 
-1. 克隆本仓库：
-   ```bash
-   git clone https://github.com/247like/google-auth-migrator.git
-   cd google-auth-migrator
-   ```
+1.  前往 [Releases 页面](https://github.com/247like/google-auth-migrator/releases) 下载最新的 `google-auth-offline.html` 文件。
+2.  **断开网络连接** (拔掉网线或关闭 Wi-Fi)。
+3.  直接双击打开下载的 `google-auth-offline.html`。
+    * *注：此版本已内置所有依赖库（JS/CSS），无需联网即可完整运行。*
 
-2. 直接用浏览器打开 `index.html` 即可使用（无需构建）。
-
-3. *(可选)* 如需纯净环境，可断开网络连接后操作。
+---
+*(如果你是开发者，也可以 clone 仓库并运行脚本自行构建离线版)*
 
 ## 🌍 浏览器兼容性
 
