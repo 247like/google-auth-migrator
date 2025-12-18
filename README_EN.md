@@ -116,7 +116,7 @@ To ensure maximum security and prevent any data leakage risks, we highly recomme
 3. Open the downloaded `google-auth-offline.html` file directly in your browser.
     * *Note: This version bundles all dependencies (JS/CSS) into a single file. It functions 100% locally without any network connection.*
 
----
+
 *(Developers can also clone the repository and run the included script to build this offline version manually.)*
 
 ## 🌍 Browser Compatibility
