@@ -107,19 +107,17 @@ A **pure static, offline** web tool for converting **Google Authenticator** expo
 If you don't mind, you can use my deployed version (pure static hosting):
 👉 **[https://g-auth.beiai.de](https://g-auth.beiai.de)**
 
-## 📦 Local Deployment (Recommended)
+## 📥 Local Offline Usage (Recommended)
 
-For maximum security, it's recommended to download and run locally:
+To ensure maximum security and prevent any data leakage risks, we highly recommend using the **fully offline standalone version**:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/247like/google-auth-migrator.git
-   cd google-auth-migrator
-   ```
+1. Go to the [Releases page](https://github.com/247like/google-auth-migrator/releases) and download the latest `google-auth-offline.html`.
+2. **Disconnect from the internet** (disable Wi-Fi or unplug your Ethernet cable).
+3. Open the downloaded `google-auth-offline.html` file directly in your browser.
+    * *Note: This version bundles all dependencies (JS/CSS) into a single file. It functions 100% locally without any network connection.*
 
-2. Open `index.html` directly in your browser (no build required).
-
-3. *(Optional)* For a completely clean environment, disconnect from the internet before use.
+---
+*(Developers can also clone the repository and run the included script to build this offline version manually.)*
 
 ## 🌍 Browser Compatibility
 
